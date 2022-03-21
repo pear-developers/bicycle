@@ -6,9 +6,23 @@ const config = {
 	// Consult https://github.com/sveltejs/svelte-preprocess
 	// for more information about preprocessors
 	preprocess: preprocess(),
-
 	kit: {
-		adapter: adapter()
+		adapter: adapter(),
+		vite: {
+			plugins: [
+				{
+					name: 'bicycle-server',
+					configureServer(server) {
+						const ws = server.ws;
+
+						// console.log(ws);
+						ws.on('connection', ws => {
+							console.log(ws);
+						});
+					}
+				}
+			]
+		}
 	}
 };
 
