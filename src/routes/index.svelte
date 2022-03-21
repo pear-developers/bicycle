@@ -1,2 +1,13 @@
-<h1>Welcome to SvelteKit</h1>
-<p>Visit <a href="https://kit.svelte.dev">kit.svelte.dev</a> to read the documentation</p>
+<script lang="ts">
+    import { browser } from '$app/env';
+
+    let sc: WebSocket;
+
+    if (browser) {
+        sc = new WebSocket('ws://localhost:3000');
+    }
+</script>
+
+{#if browser}
+<h1>{ sc }</h1>
+{/if}
